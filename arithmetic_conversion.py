@@ -94,7 +94,21 @@ class ArithmeticConversion:
 
                 # Вывод результатов работы алгоритма
                 case 4:
-                    pass
+                    system('CLS')
+                    if len(self.__list_of_results) > 0:
+                        print(
+                            f"Результат работы алгоритма.\n"
+                            f"Первый массив чисел: {' '.join(map(str, self.__first_array))}\n"
+                            f"Второй массив чисел: {' '.join(map(str, self.__second_array))}\n"
+                            f"Третий массив чисел: {' '.join(map(str, self.__third_array))}\n"
+                            f"Результат проверки: {' '.join(map(str, self.__list_of_results))}"
+                        )
+                        system('PAUSE')
+                    else:
+                        FOutput.error_message(
+                            'Невозможно вывести результат работы алгоритма, так как алгоритм не был выполнен. '
+                            'Запустите работу алгоритма и попробуйте еще раз.'
+                        )
 
                 # Выход в главное меню
                 case 5:
