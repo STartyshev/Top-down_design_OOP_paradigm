@@ -37,8 +37,8 @@ class NumberOfCommonNumbers:
 
                 # Ввод исходных данных
                 case 2:
-                    first_array = []
-                    second_array = []
+                    self.__first_array = []
+                    self.__second_array = []
                     system('CLS')
                     while True:
                         initialization_item = ConsoleUI.menu(
@@ -51,18 +51,18 @@ class NumberOfCommonNumbers:
                             case 1:
                                 system('CLS')
                                 print('Инициализация первого массива: ')
-                                CorrectInit.array_init()
+                                CorrectInit.array_init(self.__first_array)
                                 print('Инициализация второго массива: ')
-                                CorrectInit.array_init()
+                                CorrectInit.array_init(self.__second_array)
                                 break
 
                             # Инициализация массивов случайным образом
                             case 2:
                                 system('CLS')
                                 print('Инициализация первого массива: ')
-                                CorrectInit.random_array_init()
+                                CorrectInit.random_array_init(self.__first_array)
                                 print('Инициализация второго массива: ')
-                                CorrectInit.random_array_init()
+                                CorrectInit.random_array_init(self.__second_array)
                                 break
 
                             case _:
@@ -73,7 +73,16 @@ class NumberOfCommonNumbers:
 
                 # Выполнение алгоритма
                 case 3:
-                    pass
+                    system('CLS')
+                    if len(self.__first_array) < 1 or len(self.__second_array) < 1:
+                        FOutput.error_message(
+                            'Невозможно выполнить алгоритм, так как один или оба массива пустые. '
+                            'Заполните массивы и попробуйте еще раз.'
+                        )
+                    else:
+                        self.__num_of_common_numbers = self.task_algorithm()
+                        print('Алгоритм успешно выполнен!')
+                        system('PAUSE')
 
                 # Вывод результатов работы алгоритма
                 case 4:
@@ -89,5 +98,15 @@ class NumberOfCommonNumbers:
     def task_algorithm(self):
         """
         Алгоритм решения задачи.
+        :return: Возвращает количество общих чисел двух массивов.
         """
-        pass
+        # Список в который будут добавляться общие числа
+        list_of_common_numbers = []
+        for elem in self.__first_array:
+            # Если число из первого массива или его обратная версия находятся во втором массиве
+            # И это число еще не обрабатывалось прежде т. е. его нет в списке общих чисел
+            # То оно добавляется в список
+            if ((str(elem) in list(map(str, self.__second_array)) or str(elem)[::-1] in
+                 list(map(str, self.__second_array))) and elem not in list_of_common_numbers):
+                list_of_common_numbers.append(elem)
+        return len(list_of_common_numbers)
