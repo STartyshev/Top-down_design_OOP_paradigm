@@ -86,7 +86,20 @@ class NumberOfCommonNumbers:
 
                 # Вывод результатов работы алгоритма
                 case 4:
-                    pass
+                    system('CLS')
+                    if self.__num_of_common_numbers is not None:
+                        print(
+                            f"Результат работы алгоритма.\n"
+                            f"Первый массива: {' '.join(map(str, self.__first_array))}\n"
+                            f"Второй массив: {' '.join(map(str, self.__second_array))}\n"
+                            f"Количество общих чисел в обоих массивах: {self.__num_of_common_numbers}"
+                        )
+                        system('PAUSE')
+                    else:
+                        FOutput.error_message(
+                            'Невозможно вывести результат работы алгоритма, так как алгоритм не был выполнен. '
+                            'Запустите работу алгоритма и попробуйте еще раз.'
+                        )
 
                 # Выход в главное меню
                 case 5:
