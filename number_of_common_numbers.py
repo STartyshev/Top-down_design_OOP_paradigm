@@ -6,15 +6,16 @@ class NumberOfCommonNumbers:
                 f"Также число будет считаться общим если оно входит в один массив, а в другом массиве находится "
                 f"его перевернутая версия.")
 
-    @staticmethod
-    def ui_for_task():
+    def __init__(self):
+        pass
+
+    def ui_for_task(self):
         """
         Функция реализующая пользовательский интерфейс в консоли для задачи.
         """
         pass
 
-    @staticmethod
-    def task_algorithm():
+    def task_algorithm(self):
         """
         Алгоритм решения задачи.
         """

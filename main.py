@@ -2,6 +2,7 @@ from console_ui import ConsoleUI
 from number_of_common_numbers import NumberOfCommonNumbers as Task1
 from os import system
 from error_output import FormattedOutput as FOutput
+from distance_between_points import DistanceBetweenPoints as Task2
 
 
 def main():
@@ -13,10 +14,10 @@ def main():
 
         match task_selection_item:
             case 1:
-                Task1.ui_for_task()
+                Task1().ui_for_task()
 
             case 2:
-                pass
+                Task2().ui_for_task()
 
             case 3:
                 pass
