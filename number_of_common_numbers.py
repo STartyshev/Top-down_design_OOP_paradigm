@@ -1,5 +1,6 @@
 from console_ui import ConsoleUI
 from error_output import FormattedOutput as FOutput
+from correct_initialization import CorrectInitialization as CorrectInit
 
 
 class NumberOfCommonNumbers:
@@ -36,7 +37,39 @@ class NumberOfCommonNumbers:
 
                 # Ввод исходных данных
                 case 2:
-                    pass
+                    first_array = []
+                    second_array = []
+                    system('CLS')
+                    while True:
+                        initialization_item = ConsoleUI.menu(
+                            'Способ инициализации.\n'
+                            '1. Вручную.\n'
+                            '2. Автоматически.'
+                        )
+                        match initialization_item:
+                            # Инициализация массивов вручную
+                            case 1:
+                                system('CLS')
+                                print('Инициализация первого массива: ')
+                                CorrectInit.array_init()
+                                print('Инициализация второго массива: ')
+                                CorrectInit.array_init()
+                                break
+
+                            # Инициализация массивов случайным образом
+                            case 2:
+                                system('CLS')
+                                print('Инициализация первого массива: ')
+                                CorrectInit.random_array_init()
+                                print('Инициализация второго массива: ')
+                                CorrectInit.random_array_init()
+                                break
+
+                            case _:
+                                FOutput.error_message('В меню всего 2 пункта. Попробуйте еще раз.')
+
+                    print('Инициализация массивов прошла успешно.')
+                    system('PAUSE')
 
                 # Выполнение алгоритма
                 case 3:
