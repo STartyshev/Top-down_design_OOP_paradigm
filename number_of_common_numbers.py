@@ -1,6 +1,7 @@
 from console_ui import ConsoleUI
 from error_output import FormattedOutput as FOutput
 from correct_initialization import CorrectInitialization as CorrectInit
+from os import system
 
 
 class NumberOfCommonNumbers:

@@ -1,3 +1,6 @@
+from os import system
+
+
 class FormattedOutput:
     """
     Класс реализующий методы форматированного вывода сообщений в консоль.

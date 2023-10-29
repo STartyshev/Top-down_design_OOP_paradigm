@@ -1,4 +1,5 @@
 from error_output import FormattedOutput as FOutput
+from os import system
 
 
 class ConsoleUI:

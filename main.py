@@ -11,7 +11,13 @@ def main():
     Функция старта главного меню.
     """
     while True:
-        task_selection_item = ConsoleUI.menu()
+        task_selection_item = ConsoleUI.menu(
+            'Меню выбора задания.\n'
+            '1. Проверка двух массивов на количество общих чисел.\n'
+            '2. Расстояние между точками.\n'
+            '3. Логическое следствие элементов трех массивов.\n'
+            '4. Выход из программы.'
+        )
 
         match task_selection_item:
             case 1:
@@ -28,7 +34,7 @@ def main():
                 return
 
             case _:
-                FOutput.error_message()
+                FOutput.error_message('В меню всего 4 пункта. Попробуйте еще раз.')
 
 
 if __name__ == '__main__':

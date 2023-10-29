@@ -2,6 +2,7 @@ from console_ui import ConsoleUI
 from correct_initialization import CorrectInitialization as CorrectInit
 from error_output import FormattedOutput as FOutput
 from math import sqrt
+from os import system
 
 
 class DistanceBetweenPoints:
@@ -49,7 +50,7 @@ class DistanceBetweenPoints:
                     self.__dict_of_segments_and_points = dict()
                     self.__algorithm_completed = False
                     system('CLS')
-                    max_length = CorrectInit.input_num(
+                    self.__max_length = CorrectInit.input_num(
                         left_value=1,
                         right_value=float('inf'),
                         input_message='Введите значение с которым нужно сравнивать длины отрезков: ',
