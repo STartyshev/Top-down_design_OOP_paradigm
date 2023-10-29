@@ -116,7 +116,27 @@ class DistanceBetweenPoints:
 
                 # Вывод результатов работы алгоритма
                 case 4:
-                    pass
+                    system('CLS')
+                    if self.__algorithm_completed:
+                        if len(self.__dict_of_segments_and_points.keys()) < 1:
+                            print(f"Алгоритм не нашел ни одной пары точек, которые образовали бы отрезок "
+                                  f"длиной больше {self.__max_length}.")
+                        else:
+                            print(
+                                f"Результат работы алгоритма.\n"
+                                f"Первый массив точек: {' '.join(map(str, self.__first_array_of_dots))}\n"
+                                f"Второй массив точек: {' '.join(map(str, self.__second_array_of_dots))}\n"
+                                f"Список точек расстояние между которыми больше {self.__max_length}: "
+                            )
+                            for key in self.__dict_of_segments_and_points.keys():
+                                print(f"Пара точек: {self.__dict_of_segments_and_points[key]}; длина отрезка, "
+                                      f"который они образуют: {round(key, 1)}.\n")
+                        system('PAUSE')
+                    else:
+                        FOutput.error_message(
+                            'Невозможно вывести результат работы алгоритма, так как алгоритм не был выполнен. '
+                            'Запустите работу алгоритма и попробуйте еще раз.'
+                        )
 
                 # Выход в главное меню
                 case 5:
