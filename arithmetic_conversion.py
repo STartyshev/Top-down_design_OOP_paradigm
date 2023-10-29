@@ -114,12 +114,30 @@ class ArithmeticConversion:
         for index, triple in triples_of_numbers:
             try:
                 # Проверка каждой из 6 арифметических операций
-                self.check_arithmetic_operation()
-                self.check_arithmetic_operation()
-                self.check_arithmetic_operation()
-                self.check_arithmetic_operation()
-                self.check_arithmetic_operation()
-                self.check_arithmetic_operation()
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 % elem2, '%'
+                )
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 / elem2, '/'
+                )
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 ** elem2, '**'
+                )
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 * elem2, '*'
+                )
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 - elem2, '-'
+                )
+                self.check_arithmetic_operation(
+                    index, triple[0], triple[1], triple[2], list_of_results,
+                    lambda elem1, elem2: elem1 + elem2, '+'
+                )
             except ZeroDivisionError:
                 pass
 
@@ -129,9 +147,27 @@ class ArithmeticConversion:
 
         return list_of_results
 
-    def check_arithmetic_operation(self):
+    def check_arithmetic_operation(self, index, elem1, elem2, elem3, list_of_results, func, function_symbol):
         """
         Функция реализующая проверку: можно ли получить число из 3-го массива, заданным арифметическим преобразованием
         с числами 2-ух других массивов. В случае положительного результата добавляет полученый способ в список результатов.
+        :param index: Индекс проверяемого элемента;
+        :param elem1: элемент из первого массива;
+        :param elem2: элемент из второго массива;
+        :param elem3: элемент из третьего массива (проверяемый элемент);
+        :param list_of_results: список полученных результатов;
+        :param func: функция которая будет применяться к elem1 и elem2 (арифметическая операция);
+        :param function_symbol: строковое отображение арифметической операции (значок).
         """
-        pass
+        if func(elem1, elem2) == elem3:
+            if list_of_results[index] == '':
+                list_of_results[index] = (f"Способы получить {index + 1}-й элемент: "
+                                          f"{elem1} {function_symbol} {elem2} = {elem3};")
+            else:
+                list_of_results[index] += f"\n{elem1} {function_symbol} {elem2} = {elem3};"
+        elif func(elem2, elem1) == elem3:
+            if list_of_results[index] == '':
+                list_of_results[index] = (f"Способы получить {index + 1}-й элемент: "
+                                          f"{elem2} {function_symbol} {elem1} = {elem3};")
+            else:
+                list_of_results[index] += f"\n{elem2} {function_symbol} {elem1} = {elem3};"
