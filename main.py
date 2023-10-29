@@ -3,6 +3,7 @@ from number_of_common_numbers import NumberOfCommonNumbers as Task1
 from os import system
 from error_output import FormattedOutput as FOutput
 from distance_between_points import DistanceBetweenPoints as Task2
+from arithmetic_conversion import ArithmeticConversion as Task3
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
                 Task2().ui_for_task()
 
             case 3:
-                pass
+                Task3().ui_for_task()
 
             case 4:
                 system('CLS')
