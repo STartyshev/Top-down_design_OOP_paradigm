@@ -81,7 +81,16 @@ class ArithmeticConversion:
 
                 # Выполнение алгоритма
                 case 3:
-                    pass
+                    system('CLS')
+                    if len(self.__first_array) < 1 or len(self.__second_array) < 1 or len(self.__third_array) < 1:
+                        FOutput.error_message(
+                            'Невозможно выполнить алгоритм, так как один или несколько массивов пустые. '
+                            'Заполните массивы и попробуйте еще раз.'
+                        )
+                    else:
+                        self.__list_of_results = self.task_algorithm()
+                        print('Алгоритм успешно выполнен!')
+                        system('PAUSE')
 
                 # Вывод результатов работы алгоритма
                 case 4:
@@ -97,8 +106,28 @@ class ArithmeticConversion:
     def task_algorithm(self):
         """
         Функция реализующая алгоритм задачи
+        :return: Список со строками в которых будет содержаться описание результатов проверки
+        (можно или нельзя преобразовать).
         """
-        pass
+        list_of_results = ['' for i in range(len(self.__third_array))]
+        triples_of_numbers = enumerate(zip(self.__first_array, self.__second_array, self.__third_array))
+        for index, triple in triples_of_numbers:
+            try:
+                # Проверка каждой из 6 арифметических операций
+                self.check_arithmetic_operation()
+                self.check_arithmetic_operation()
+                self.check_arithmetic_operation()
+                self.check_arithmetic_operation()
+                self.check_arithmetic_operation()
+                self.check_arithmetic_operation()
+            except ZeroDivisionError:
+                pass
+
+        for i in range(len(list_of_results)):
+            if list_of_results[i] == '':
+                list_of_results[i] = f"Нет способов получить {i + 1}-й элемент."
+
+        return list_of_results
 
     def check_arithmetic_operation(self):
         """
