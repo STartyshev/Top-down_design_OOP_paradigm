@@ -1,6 +1,7 @@
 from console_ui import ConsoleUI
 from correct_initialization import CorrectInitialization as CorrectInit
 from error_output import FormattedOutput as FOutput
+from math import sqrt
 
 
 class DistanceBetweenPoints:
@@ -67,9 +68,9 @@ class DistanceBetweenPoints:
                             case 1:
                                 system('CLS')
                                 print('Инициализация первого массива: ')
-                                CorrectInit.array_of_dots_init()
+                                CorrectInit.array_of_dots_init(self.__first_array_of_dots)
                                 print('Инициализация второго массива: ')
-                                CorrectInit.array_of_dots_init()
+                                CorrectInit.array_of_dots_init(self.__second_array_of_dots)
                                 break
 
                             # Инициализация массивов точек случайным образом
@@ -88,9 +89,9 @@ class DistanceBetweenPoints:
                                     type_of_number=int
                                 )
                                 print('Инициализация первого массива: ')
-                                CorrectInit.auto_array_of_dots_init()
+                                CorrectInit.auto_array_of_dots_init(self.__first_array_of_dots, space_selection)
                                 print('Инициализация второго массива: ')
-                                CorrectInit.auto_array_of_dots_init()
+                                CorrectInit.auto_array_of_dots_init(self.__second_array_of_dots, space_selection)
                                 break
 
                             case _:
@@ -101,7 +102,17 @@ class DistanceBetweenPoints:
 
                 # Выполнение алгоритма
                 case 3:
-                    pass
+                    system('CLS')
+                    if len(self.__first_array_of_dots) < 1 or len(self.__second_array_of_dots) < 1:
+                        FOutput.error_message(
+                            'Невозможно выполнить алгоритм, так как один или оба массива пустые. '
+                            'Заполните массивы и попробуйте еще раз.'
+                        )
+                    else:
+                        self.__dict_of_segments_and_points = self.task_algorithm()
+                        self.__algorithm_completed = True
+                        print('Алгоритм успешно выполнен!')
+                        system('PAUSE')
 
                 # Вывод результатов работы алгоритма
                 case 4:
@@ -117,11 +128,24 @@ class DistanceBetweenPoints:
     def task_algorithm(self):
         """
         Функция реализующая алгоритм решения задачи.
+        :return: Возвращает словарь где ключи - длины отрезков которые больше заданного числа, а значения - пара точек,
+        которые эти отрезки образуют.
         """
-        pass
+        return {
+            self.segment_length(dot1, dot2): [dot1, dot2]
+            for dot1, dot2 in zip(self.__first_array_of_dots, self.__second_array_of_dots)
+            if self.segment_length(dot1, dot2) > self.__max_length
+        }
 
-    def segment_length(self):
+    def segment_length(self, dot1, dot2):
         """
         Функция вычисляющая длину отрезка образованного двумя точками.
+        :param dot1: Первая точка;
+        :param dot2: вторая точка.
+        :return: Возвращает длину отрезка образованного двумя точками.
         """
-        pass
+        return sqrt(
+            sum(
+                (c1 - c2) ** 2 for c1, c2 in zip(dot1, dot2)
+            )
+        )
