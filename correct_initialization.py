@@ -69,15 +69,66 @@ class CorrectInitialization:
             array.append(round(random.random() * 10 * ((-1) ** random.randint(1, 2)), 1))
 
     @staticmethod
-    def array_of_dots_init():
+    def array_of_dots_init(array_of_dots):
         """
         Функция для инициализации массива точек вручную.
+        :param array_of_dots: Массив точек для инициализации.
         """
-        pass
+        print('В каком пространстве будут находиться точки?\n'
+              '1. На прямой.\n'
+              '2. На плоскости.\n'
+              '3. В трехмерном пространстве.')
+
+        space_selection = CorrectInitialization.input_num(
+            left_value=-float('inf'),
+            right_value=float('inf'),
+            input_message='Выберите пункт меню: ',
+            error_message='В меню всего 3 пункта. Попробуйте еще раз.',
+            type_of_number=int
+        )
+        while True:
+            point_coordinates = []
+            for i in range(space_selection):
+                point_coordinates.append(
+                    CorrectInitialization.input_num(
+                        left_value=-float('inf'),
+                        right_value=float('inf'),
+                        input_message=f"Введите {i + 1}-ю координату {len(array_of_dots) + 1}-й точки: ",
+                        error_message='Координата должна быть числом. Попробуйте еще раз.',
+                        type_of_number=float
+                    )
+                )
+            array_of_dots.append(tuple(point_coordinates))
+            add_or_exit = input('Хотите добавить еще одну точку? Да / Нет: ')
+            add_or_exit = add_or_exit.upper()
+            while add_or_exit != 'ДА' and add_or_exit != 'НЕТ':
+                FOutput.error_message('Есть только два варианта ответа. '
+                                      'Попробуйте еще раз.')
+                add_or_exit = input('Хотите добавить еще одну точку? Да / Нет: ')
+                add_or_exit = add_or_exit.upper()
+
+            if add_or_exit == 'НЕТ':
+                return
 
     @staticmethod
-    def auto_array_of_dots_init():
+    def auto_array_of_dots_init(array_of_dots, space_selection):
         """
         Функция для инициализации массива случайными точками.
+        :param array_of_dots: Массив точек для инициализации;
+        :param space_selection: размерность пространства в котором будут находиться точки.
         """
-        pass
+        size_of_array = CorrectInitialization.input_num(
+            left_value=1,
+            right_value=50,
+            input_message='Введите размер массива точек, который хотите заполнить автоматически: ',
+            error_message='Размер массива должен быть больше 0 и меньше или равен 50. '
+                          'Попробуйте еще раз.',
+            type_of_number=int
+        )
+
+        for i in range(size_of_array):
+            array_of_dots.append(
+                tuple(
+                    round(random.random() * 10 * ((-1) ** random.randint(1, 2)), 1) for j in range(space_selection)
+                )
+            )
